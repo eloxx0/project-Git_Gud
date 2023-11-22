@@ -7,6 +7,8 @@ project(${PACKAGE})
 
 include_directories(include)
 
+add_library(time INTERFACE include/Date.h include/Year.h)
+
 ##accede alla subdirectory src
 add_subdirectory(src)
 
