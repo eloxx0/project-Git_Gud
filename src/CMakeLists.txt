@@ -6,6 +6,8 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ../bin)
 add_executable(main main.cpp)
 
 ##sposta l'eseguibile nella cartella bin
+##${CMAKE_COMMAND} variabile che contiene il comando cmake
+##COMMAND esegue comandi bash
 add_custom_command(TARGET main POST_BUILD 
     COMMAND ${CMAKE_COMMAND} -E copy ${CMAKE_RUNTIME_OUTPUT_DIRECTORY} main
     COMMENT "Created ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/main")

@@ -1,37 +1,33 @@
 #include  "../include/Book.h"
 
-Book::Book(std::string nome, std::string cognome, std::string titolo): name{nome}, surname{cognome}, title{titolo}{
+Book::Book(std::string nome, std::string cognome, std::string titolo, Isbn isbn): name{nome}, surname{cognome}, title{titolo}, isbn{isbn}{
 	available=true;
 }
 
-Book::Book(std::string nome, std::string cognome, std::string titolo, int data): name{nome}, surname{cognome}, title{titolo}, date{data}{
+Book::Book(std::string nome, std::string cognome, std::string titolo, Isbn isbn, Date data): name{nome}, surname{cognome}, title{titolo}, date{data}, isbn{isbn}{
 	available=true;
 }
 
-std::string Book::getTitle(void) const{
-	return title;
+void Book::set_availability(bool b){
+    available = b;
 }
 
-std::string Book::getName(void) const{
-	return name;
+void borrow_book(Book& book){
+    if(book.getAvailability()){
+        std::cout << "il libro è stato preso in prestito";
+        book.set_availability(false);
+        return;
+    }
+    std::cout << "il libro non è disponibile per essere preso in prestito";
+
 }
 
-std::string Book::getSurname(void) const{
-	return surname;
-}
+void return_book(Book& book){
+    if(!book.getAvailability()){
+        std::cout << "il libro è stato restituito";
+        book.set_availability(true);
+        return;
+    }
+    std::cout << "il libro è già disponibile";
 
-int Book::getDate(void) const{
-	return date;
-}
-
-bool Book::loan(void){
-	available=false;
-	
-	return available;
-}
-
-bool Book::present(void){
-	available=true;
-	
-	return available;
 }
