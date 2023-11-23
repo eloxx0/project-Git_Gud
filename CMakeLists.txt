@@ -8,10 +8,7 @@ project(${PACKAGE})
 
 include_directories(include)
 
-##INTERFACE crea una interfaccia. Non viene compilata e non viene incluso come
-##un target nel buildsystem
-add_library(time INTERFACE include/Date.h include/Year.h)
-
+add_subdirectory(include)
 ##accede alla subdirectory src
 add_subdirectory(src)
 
