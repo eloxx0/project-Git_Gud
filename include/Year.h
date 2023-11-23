@@ -2,7 +2,7 @@
 #define YEAR_H
 
 class Year{
-    static const int min_y = 1600;
+    static const int min_y = 1899;
     static const int max_y = 2025;
 
     private:

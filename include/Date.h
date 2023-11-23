@@ -11,8 +11,11 @@ enum class Month{
 
 class Date{
     private:
+
     int d;
+
     Month m;
+
     Year y;
     //funzione privata che permette restituisce true se i dati privati sono validi
     //false se sono invalidi 
@@ -22,6 +25,9 @@ class Date{
 
     //eccezione lanciata dal costruttore nel caso in cui i dati inseriti non sono validi
     class Invalid_argument{};
+
+    //costruttore di base della classe Date. Inizializza i parametri alla prima data utilizzabile
+    Date();
 
     //costruttore della classe Date. Richiede come parametri in ordine il giorno, il mese e l'anno
     Date(int d, Month m, Year y);

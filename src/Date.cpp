@@ -6,6 +6,8 @@ Date::Date(int d, Month m, Year y) : d{d}, m{m}, y{y}{
     if(!is_valid()) throw Invalid_argument();
 }
 
+Date::Date() : d{1}, m{Month(1)}, y{1899}{}
+
 bool Date::is_valid(){
 
     if(m < Month(1) || m > Month(12) ) return false;
