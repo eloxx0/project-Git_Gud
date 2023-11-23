@@ -5,6 +5,7 @@
 #include <iostream>
 #include "Year.h"
 #include <string>
+#include "Isbn.h"
 
 class Book{
 
@@ -23,10 +24,10 @@ class Book{
 	Book(std::string nome, std::string cognome, std::string titolo, int data);
 	
 	//getter
-	std::string getTitle(void);
-	std::string getName(void);
-	std::string getSurname(void);
-	int getDate(void);
+	std::string getTitle(void) const;
+	std::string getName(void) const;
+	std::string getSurname(void) const;
+	int getDate(void) const;
 	
 };
 
