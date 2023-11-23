@@ -5,7 +5,6 @@
 #include <iostream>
 #include "Year.h"
 #include <string>
-#include "Isbn.h"
 
 class Book{
 
@@ -15,7 +14,6 @@ class Book{
 	std::string name;
 	std::string surname;
 	int date;
-	bool onloan;
 	bool available;
 	
 	public:
@@ -28,6 +26,9 @@ class Book{
 	std::string getName(void) const;
 	std::string getSurname(void) const;
 	int getDate(void) const;
+	
+	bool loan(void);
+	bool present(void);
 	
 };
 
