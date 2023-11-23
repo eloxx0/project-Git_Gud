@@ -19,6 +19,10 @@ class Book{
 	
 	public:
 	
+	Book(std::string nome, std::string cognome, std::string titolo);
+	Book(std::string nome, std::string cognome, std::string titolo, int data);
+	
+	//getter
 	std::string getTitle(void);
 	std::string getName(void);
 	std::string getSurname(void);
