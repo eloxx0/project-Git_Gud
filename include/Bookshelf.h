@@ -24,7 +24,7 @@ class Bookshelf{
     //inizializza a 0 e alloca lo spazio, in modo da avere length elementi accessibili senza errori (per esempio con il safe_set o safe_get)
     explicit Bookshelf(int length);
 
-    //caso in cui voglio inizializzare un vettore tramite una lista di valori
+    //caso in cui voglio inizializzare un vettore tramite una lista di libri
     Bookshelf(std::initializer_list<Book> list);
 
     Bookshelf(const Bookshelf& v);
@@ -49,7 +49,7 @@ class Bookshelf{
 
     //in questo caso non va a modificare il vettore di partenza ma
     //ne restituisce un altro poichè è const
-    //ritorna solo il valore e non una reference in modo che non sia possibile
+    //ritorna solo il libro e non una reference in modo che non sia possibile
     //accedere in scrittura al vettore (e quindi lo mantiene costante)
     Book operator[](int a) const;
 
