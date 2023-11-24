@@ -1,6 +1,10 @@
+#ifndef BOOKSHELF
+#define BOOKSHELF
+
 #include "../MyVector/include/MyVector.h"
 #include <initializer_list>
 #include <iostream>
+#include "Book.h"
 
 
 class Bookshelf{
@@ -9,7 +13,7 @@ class Bookshelf{
     //la capacità indica il numero di elementi allocati. E' diverso dalla lunghezza, che dipende dal numero di elementi inseriti
     int capacity;
     //puntatore al primo elemento
-    double *elem;
+    Book *elem;
 
     public:
 
@@ -41,13 +45,13 @@ class Bookshelf{
     //operatore di accesso agli elementi del vettore. Ritorna l'elemento in posizione
     //richiesta dall'indice inserito
     //ritorna una REFERENCE in modo da permettere anche l'accesso in scrittura!!
-    double& operator[](int a);
+    Book& operator[](int a);
 
     //in questo caso non va a modificare il vettore di partenza ma
     //ne restituisce un altro poichè è const
     //ritorna solo il valore e non una reference in modo che non sia possibile
     //accedere in scrittura al vettore (e quindi lo mantiene costante)
-    double operator[](int a) const;
+    Book operator[](int a) const;
 
     Bookshelf& operator=(const Bookshelf& v);
 
@@ -64,10 +68,10 @@ class Bookshelf{
 
     //posso applicarla a vettori costanti
     //ritorna l'elemento in posizione pos se è entro i limiti DI LUNGHEZZA del vettore, non di capacità
-    const Bookshelf& safe_get(int pos) const;
+    const Book& safe_get(int pos) const;
 
     //ritorno una reference per permettere l'accesso in scrittura
-    Bookshelf& safe_get(int pos);
+    Book& safe_get(int pos);
 
     //resiza il vettore alla lunghezza indicata come parametro. Se la lunghezza è minore,
     //c'è una perdita di dati, se invece la lunghezza indicata è maggiore della capacity viene allocato
@@ -96,11 +100,11 @@ class Bookshelf{
     //controllando che sia all'interno della lunghezza
     //lancia Invalid_position() se si cerca di accedere al di fuori dei
     //bounds del vettore
-    Bookshelf& at(int pos);
+    Book& at(int pos);
 
     //permette di accedere all'elemento di un vettore costante ma senza
     //permettere di modificarlo (infatti ritorna una const reference e non la reference)
-    const Bookshelf& at(int pos) const;
+    const Book& at(int pos) const;
 
     ~Bookshelf(){
         //usando le parentesi mi riferisco a tutto lo spazio di memoria allocato con new[] e puntato da 
@@ -109,3 +113,5 @@ class Bookshelf{
     }
 
 };
+
+#endif // BOOKSHELF
