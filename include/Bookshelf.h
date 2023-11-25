@@ -32,7 +32,7 @@ class Bookshelf{
     //costruttore che accetta come parametro un riferimento al rvalue
     Bookshelf(Bookshelf&& v);
 
-    //ritorna la lunghezza del vettore
+    //ritorna la lunghezza del vettore definito
     int size() const {
         return length;
     }
