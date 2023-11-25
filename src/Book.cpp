@@ -1,6 +1,6 @@
 #include  "../include/Book.h"
 
-Book::Book():name{""}, surname{""}, title{""}, isbn{}, date{}{}
+Book::Book():name{""}, surname{""}, title{""},available{true}, isbn{}, date{} {}
 //gli ultimi due dati membro essendo udt richiamo il costruttore vuoto definito nella loro classe, i primi 3 dati membro sono stringhe vuote
 
 Book::Book(std::string nome, std::string cognome, std::string titolo, Isbn isbn): name{nome}, surname{cognome}, title{titolo}, isbn{isbn}{
