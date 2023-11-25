@@ -20,6 +20,7 @@ class Book{
 	
     //quando un oggetto di tipo book viene creato, la variabile available viene assegnata true, poichè il libro
     //risulta come disponibile per essere preso in prestito
+    Book();
 	Book(std::string nome, std::string cognome, std::string titolo, Isbn isbn);
 	Book(std::string nome, std::string cognome, std::string titolo, Isbn isbn, Date data);
 	
