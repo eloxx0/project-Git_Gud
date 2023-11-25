@@ -1,12 +1,12 @@
 #include "../include/Date.h"
-#include "../include/Year.h"
 #include <vector>
 //initializer list utilizza il costruttore della classe Year per inizializzare
 Date::Date(int d, Month m, Year y) : d{d}, m{m}, y{y}{
     if(!is_valid()) throw Invalid_argument();
 }
 
-Date::Date() : d{1}, m{Month(1)}, y{1899}{}
+//costruttore di base inizializza alla prima data assegnabile
+Date::Date() : d{1}, m{Month(1)}, y{Year::MIN_Y}{}
 
 bool Date::is_valid(){
 

@@ -2,13 +2,16 @@
 #define YEAR_H
 
 class Year{
-    static const int min_y = 1899;
-    static const int max_y = 2025;
 
     private:
+
     int y;
 
     public:
+
+    static const int MIN_Y = 1899;
+    static const int MAX_Y = 2025;
+
     Year(int year);
     
     //eccezione lanciata dal costruttore nel caso in cui l'anno non appartiene ai
