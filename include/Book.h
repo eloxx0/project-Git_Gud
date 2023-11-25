@@ -2,7 +2,7 @@
 #define BOOK_H
 
 #include "Date.h"
-#include <string>
+#include <ostream>
 #include "Isbn.h"
 
 class Book{
@@ -21,7 +21,9 @@ class Book{
     //quando un oggetto di tipo book viene creato, la variabile available viene assegnata true, poichè il libro
     //risulta come disponibile per essere preso in prestito
     Book();
+
 	Book(std::string nome, std::string cognome, std::string titolo, Isbn isbn);
+
 	Book(std::string nome, std::string cognome, std::string titolo, Isbn isbn, Date data);
 	
 	//getter
@@ -45,6 +47,11 @@ class Book{
     }
     //permette di cambiare lo stato di disponibilità di un libro
     void set_availability(bool b);
+
+    //overload dell'operatore ==. Confronta due oggetti di tipo Book in base al codice ISBN
+    bool operator==(const Book& b);
+
+    bool operator !=(const Book& b);
 	
 	
 };
@@ -52,5 +59,7 @@ class Book{
 void borrow_book(Book& book);
 
 void return_book(Book& book);
+
+std::ostream& operator<<(std::ostream& os, const Book& b);
 
 #endif // BOOK_H

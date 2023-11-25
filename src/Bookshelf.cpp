@@ -4,7 +4,8 @@ const int BASE_CAPACITY = 5;
 
 Bookshelf::Bookshelf(int length) : capacity{length + BASE_CAPACITY}, elem{new Book[length + BASE_CAPACITY]}, length{length}{
     //inizializza a zero gli elementi, l'unico modo per farlo è richiamare il costruttore vuoto di Book
-    Book();
+
+    //******non serve chiamare il costruttore di base, viene fatto in automatico dall'operatore new!!*******
 }
 
 Bookshelf::Bookshelf(std::initializer_list<Book> lst) : capacity{static_cast<int>(lst.size())}, elem{new Book[lst.size()]}, length{static_cast<int>(lst.size())}{
@@ -130,11 +131,11 @@ void Bookshelf::resize(int new_l){
         //solo i primi new_l elementi sono copiati. Se new_l è maggiore di length, vengono copiati valori a caso che successivamente
         //vengono inizializzati nel for
         std::copy(elem, elem + new_l, temp);
-        //inizializzo gli elementi in più nel caso in cui new_l sia maggiore di length
         
-        //temp->Book::Book();
-        // devo richiamare il costruttore di default, immagino che non specificando/non fornendo argomenti richiami automaticamente il costruttore vuoto di book?????, utilizzando la riga sopra il compilatore diceva che non poteva richiamare direttamente il costruttore, ho eliminato il ciclo per inizializzare temp a 0
-        //disalloco lo spazio a cui punta elem per riassegnarli il puntatore temp
+        //******NON serve inizializzare i nuovi elementi poichè per come funziona l'operatore new,
+        //quando va ad allocare nuovo spazio dinamicamente, utilizza il costruttore di base
+        //per inizializzare gli elementi all'interno dello spazio di memoria allocata
+        
         delete[] elem;
         length = new_l;
         elem = temp;
@@ -144,30 +145,54 @@ void Bookshelf::resize(int new_l){
         //il reserve copia in automatico gli elementi, ma devo inizializzare gli elementi in più
         reserve(new_l + BASE_CAPACITY);
         
-        //elem->Book::Book();
-        // devo richiamare il costruttore di default, immagino che non specificando/non fornendo argomenti richiami automaticamente il costruttore vuoto di book?????, utilizzando la riga sopra il compilatore diceva che non poteva richiamare direttamente il costruttore, ho eliminato il ciclo per inizializzare temp a 0
+        //****Analogamente al caso precedente, non serve inizializzare gli elementi in più poichè vengono inizializzati
+        //usando il costruttore di default quando viene chiamato l'opteratore new
         length = new_l;
     }
 
+}
 
-
-
+void Bookshelf::resize(int new_l, Book& val){
+    if(new_l <= capacity){
+        Book* temp = new Book[capacity];
+        //solo i primi new_l elementi sono copiati. Se new_l è maggiore di length, vengono copiati valori a caso che successivamente
+        //vengono inizializzati nel for
+        std::copy(elem, elem + new_l, temp);
+        
+        //in questo caso bisogna inizializzare gli elementi
+        for(int i = length; i < new_l; i++){
+            temp[i] = val;
+        }
+        
+        delete[] elem;
+        length = new_l;
+        elem = temp;
+    }
+    else{
+        //in questo caso devo allocare nuovo spazio
+        //il reserve copia in automatico gli elementi, ma devo inizializzare gli elementi in più
+        reserve(new_l + BASE_CAPACITY);
+        
+        //assegno ai nuovi elementi il valore val
+        for(int i = length; i < new_l; i++){
+            elem[i] = val;
+        }
+        length = new_l;
+    }
 }
 
 void Bookshelf::reserve(int size){
     if(size <= capacity){
         return;
     }
-    //alloco nuovo spazio
-    //non uso il costruttore in modo da non modificare la lunghezza
     Book* temp = new Book[size]; 
     /* std::copy(elem, elem + capacity, temp); */
     for(int i = 0; i < capacity; i++){
-        temp[i] = elem[i];	
+        temp[i] = elem[i];
     }
     delete[] elem;
     capacity = size;
-    elem = temp;	
+    elem = temp;
 
 
 }

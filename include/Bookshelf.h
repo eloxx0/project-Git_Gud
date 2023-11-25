@@ -1,9 +1,7 @@
-#ifndef BOOKSHELF
-#define BOOKSHELF
+#ifndef BOOKSHELF_H
+#define BOOKSHELF_H
 
-#include "../MyVector/include/MyVector.h"
 #include <initializer_list>
-#include <iostream>
 #include "Book.h"
 
 
@@ -70,7 +68,7 @@ class Bookshelf{
     //ritorna l'elemento in posizione pos se è entro i limiti DI LUNGHEZZA del vettore, non di capacità
     const Book& safe_get(int pos) const;
 
-    //ritorno una reference per permettere l'accesso in scrittura
+    //ritorno una reference all'elemento in posizione pos
     Book& safe_get(int pos);
 
     //resiza il vettore alla lunghezza indicata come parametro. Se la lunghezza è minore,
@@ -82,7 +80,7 @@ class Bookshelf{
 
     //se new_l è maggiore di length ma minore della capacità aumenta length assegnando ai nuovi
     //elementi il valore val (o 0 nel caso in cui non viene specificato)
-    void resize(int new_l, Book val);
+    void resize(int new_l, Book& val);
 
     //imposta la capacità del vettore, e cioè alloca la memoria necessaria per permettere di salvare
     //n elementi senza modificare la lunghezza del vettore
@@ -114,4 +112,4 @@ class Bookshelf{
 
 };
 
-#endif // BOOKSHELF
+#endif // BOOKSHELF_H
