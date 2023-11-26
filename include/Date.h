@@ -49,7 +49,7 @@ class Date{
 };
 
 //overload dell'operatore <<, permette di ottenere un ostream da un Date
-std::ostream& operator<<(std::ostream& o, Date& d);
+std::ostream& operator<<(std::ostream& o, const Date& d);
 
 
 //restituisce il numero di giorni che contiene un mese in un determinato anno(tenendo conto degli anni

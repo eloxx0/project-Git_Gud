@@ -37,7 +37,7 @@ std::string month_to_string(Month mm){
     return month_v[int(mm) - 1];
 }
 
-std::ostream& operator<<(std::ostream& o, Date& d){
+std::ostream& operator<<(std::ostream& o, const Date& d){
 
     return o << std::to_string(d.get_day()) + " " + month_to_string(d.get_month()) + " " + std::to_string(d.get_year().year_int());
 }
