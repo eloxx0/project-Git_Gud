@@ -40,15 +40,18 @@ class Bookshelf{
         return capacity;
     }
 
-    //operatore di accesso agli elementi del vettore. Ritorna l'elemento in posizione
-    //richiesta dall'indice inserito
-    //ritorna una REFERENCE in modo da permettere anche l'accesso in scrittura!!
+    /*
+    Operatore di accesso agli elementi del vettore. Ritorna l'elemento in posizione
+    richiesta dall'indice inserito
+    ritorna una REFERENCE in modo da permettere anche l'accesso in scrittura!!
+    */
     Book& operator[](int a);
 
-    //in questo caso non va a modificare il vettore di partenza ma
+    /*in questo caso non va a modificare il vettore di partenza ma
     //ne restituisce un altro poichè è const
     //ritorna solo il libro e non una reference in modo che non sia possibile
-    //accedere in scrittura al vettore (e quindi lo mantiene costante)
+    accedere in scrittura al vettore (e quindi lo mantiene costante)
+    */
     Book operator[](int a) const;
 
     Bookshelf& operator=(const Bookshelf& v);

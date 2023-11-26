@@ -34,3 +34,20 @@ void return_book(Book& book){
     std::cout << "il libro è già disponibile";
 
 }
+
+bool Book::operator==(const Book& b)
+{
+    if(isbn == b.isbn) return true;
+    return false;
+}
+
+bool Book::operator !=(const Book& b)
+{
+    if(isbn != b.isbn) return true;
+    return false;
+}
+
+std::ostream& operator<<(std::ostream& os, const Book& b)
+{
+    return os<<"Titolo: "<<b.getTitle()<<"\nAutore: "<<b.getName()<<" "<<b.getSurname()<<"\nISBN: "<<b.getIsbn()<<"\nData di pubblicazione: "<<b.getDate();
+}
