@@ -44,4 +44,7 @@ bool string_isbn_valid(std::string s);
 //per in isbn
 int isbn_control_value(std::vector<int>& s);
 
+//overload dell'operatore << per printare l'ISBN del libro
+std::ostream& operator<<(std::ostream& os, const Isbn& i);
+
 #endif //ISBN_H

@@ -93,4 +93,9 @@ int isbn_control_value(std::vector<int>& s_vec_int){
     return control;
 }
 
+std::ostream& operator<<(std::ostream& os, const Isbn& i)
+{
+    return os<< i.get_isbn();
+}
+
 
