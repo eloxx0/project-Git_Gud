@@ -231,8 +231,21 @@ void printBookshelf(const Bookshelf& x){
 	
 	for(int i=0;i<x.size(); i++){
 	
-		if(x[i].getAvailability()==true)	std::cout<<x[i];	//sistemare
+		if(x[i].getAvailability()==true)	std::cout<<x[i];	
 			
+	}
+
+}
+
+Book& linearSearch(Bookshelf& x, Book& y){
+
+	for(int i=0; i<x.size(); i++){
+	
+		if(x[i]==y) return y;
+		else{
+			
+			std::cout<<"Il libro non è presente in libreria"<<std::endl; //da sistemare
+	
 	}
 
 }
