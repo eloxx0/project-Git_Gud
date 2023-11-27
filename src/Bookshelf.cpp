@@ -179,6 +179,7 @@ void Bookshelf::resize(int new_l, Book& val){
         }
         length = new_l;
     }
+
 }
 
 void Bookshelf::reserve(int size){
@@ -227,26 +228,27 @@ const Book& Bookshelf::at(int pos) const{
 }
 
 
-void printBookshelf(const Bookshelf& x){	
+void printBookshelf(const Bookshelf& x){
 	
 	for(int i=0;i<x.size(); i++){
-	
-		if(x[i].getAvailability()==true)	std::cout<<x[i];	
-			
+
+		if(x[i].getAvailability()==true){ 
+            std::cout << "libro " << (i + 1) << ":" << std::endl;
+            std::cout<<x[i] << "\n";
+        }
 	}
 
 }
 
-Book& linearSearch(Bookshelf& x, Book& y){
+int linearSearch(Bookshelf& x, Book& y){
 
 	for(int i=0; i<x.size(); i++){
-	
-		if(x[i]==y) return y;
-		else{
-			
-			std::cout<<"Il libro non è presente in libreria"<<std::endl; //da sistemare
-	
+
+        if(x[i]==y) return i;
 	}
+    std::cout<<"Il libro non è presente in libreria"<<std::endl;
+    return -1;
+
 
 }
 

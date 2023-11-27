@@ -117,8 +117,10 @@ class Bookshelf{
 
 };
 
+//stampa in standard output tutti i libri DISPONIBILI all'interno della libreria.
 void printBookshelf(const Bookshelf& x);
 
-Book& linearSearch(const Bookshelf& x);
+//ritorna l'indice del libro richiesto se è disponibile in libreria, -1 se non è presente
+int linearSearch(const Bookshelf& x, const Book& a);
 
 #endif // BOOKSHELF_H

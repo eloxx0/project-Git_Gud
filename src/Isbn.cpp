@@ -61,7 +61,7 @@ bool Isbn::operator!=(const Isbn& i){
 
 std::string generate_isbn(){
     int random = 100000000 + ( std::rand() % 100000000);
-    std::string a = "978-" + std::to_string(random);
+    std::string a = "978" + std::to_string(random);
     std::vector<char> s_vec(a.begin(), a.end());
 
     std::vector<int> s_vec_int;

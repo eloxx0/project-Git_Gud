@@ -1,6 +1,6 @@
 #include "../include/Date.h"
 #include <vector>
-//initializer list utilizza il costruttore della classe Year per inizializzare
+//initializer list utilizza il costruttore della classe Year per inizializzare. Lancia eventualmente l'eccezione Invalid_year
 Date::Date(int d, Month m, Year y) : d{d}, m{m}, y{y}{
     if(!is_valid()) throw Invalid_argument();
 }
