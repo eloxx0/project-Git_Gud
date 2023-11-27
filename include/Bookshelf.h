@@ -106,6 +106,8 @@ class Bookshelf{
     //permette di accedere all'elemento di un vettore costante ma senza
     //permettere di modificarlo (infatti ritorna una const reference e non la reference)
     const Book& at(int pos) const;
+    
+    
 
     ~Bookshelf(){
         //usando le parentesi mi riferisco a tutto lo spazio di memoria allocato con new[] e puntato da 
@@ -114,5 +116,7 @@ class Bookshelf{
     }
 
 };
+
+void printBookshelf(const Bookshelf& x) const;
 
 #endif // BOOKSHELF_H
