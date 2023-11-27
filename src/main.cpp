@@ -8,7 +8,7 @@ int main(){
     bool value= true;
     
     while(value){
-    	cout<< "Inserire il comando da eseguire: premere P se si vuole inserire un libro nella libreria, E per eliminare un elemento, Q per chiudere lo stream buffer"; 
+    	cout<< "Inserire il comando da eseguire: premere P se si vuole inserire un libro nella libreria, E per eliminare un elemento, Q per chiudere lo stream buffer, R per ritornare un libro, B per prendere in prestito un libro"; 
       	char request;
       	cin>>request;
     	switch(request){
@@ -30,7 +30,7 @@ int main(){
 				int data;
 				cin>> data;
 				cout<<"Inserire isbn"<<endl;
-				try{
+				/*try{
 				
 					string isbnvalid;
 					cin>> isbnvalid;
@@ -47,18 +47,20 @@ int main(){
 				
 				}
 				
-				}	
+				}	*/
   				
     			break;
     			
     		case 'E': x.pop_back();	
     			break;
     			
+    		case 'B':
+    			
     		case 'Q': value=true;
     			break;
     			
     		default:	cout<<"Hai inserito un comando non valido"<<endl;
-    		//FARE RETURN E BORROW
+    		
     	}
     
     }
