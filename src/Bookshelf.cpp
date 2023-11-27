@@ -227,6 +227,14 @@ const Book& Bookshelf::at(int pos) const{
 }
 
 
+void printBookshelf(const Bookshelf& x){	
+	for(int i=0;i<Bookshelf::size(); i++){
+	
+		if(x[i].getAvailable==true)	Book::<<x[i];
+		
+	}
+
+}
 
 
 
