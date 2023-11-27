@@ -1,9 +1,9 @@
-cmake_minimum_required(VERSION 3.5)
+cmake_minimum_required(VERSION 3.5) 
 set(CMAKE_CXX_STANDARD 11)
-set(PACKAGE Date)
+set(PACKAGE Git_Gud)
 
 ##creo il progetto
-project(${PACKAGE})
+project(${PACKAGE} VERSION 1.0)
 
 include_directories(include)
 

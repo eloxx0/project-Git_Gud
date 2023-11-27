@@ -76,10 +76,11 @@ std::string generate_isbn(){
     return a;
 }
 
-//algoritmo di verifica del codice isbn: se la somma delle cifre moltiplicate per un peso che
-//assume valore 1 o 3 in modo alternato. Si divide la somma per 10 e si sottrae il resto della
-//divisione a 10. Se la divisione non ha resto si tiene 0 come valore. Se la cifra di controllo
-//è uguale all'ultima cifra del isbn, allora è valido
+/*Algoritmo di verifica del codice isbn: se la somma delle cifre moltiplicate per un peso che
+assume valore 1 o 3 in modo alternato. Si divide la somma per 10 e si sottrae il resto della
+divisione a 10. Se la divisione non ha resto si tiene 0 come valore. Se la cifra di controllo
+è uguale all'ultima cifra del isbn, allora è valido.
+*/
 int isbn_control_value(std::vector<int>& s_vec_int){
     int weight;
     int control = 0;
