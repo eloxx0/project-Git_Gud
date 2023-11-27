@@ -117,6 +117,6 @@ class Bookshelf{
 
 };
 
-void printBookshelf(const Bookshelf& x) const;
+void printBookshelf(const Bookshelf& x);
 
 #endif // BOOKSHELF_H
