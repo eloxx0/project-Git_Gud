@@ -119,4 +119,6 @@ class Bookshelf{
 
 void printBookshelf(const Bookshelf& x);
 
+Book& linearSearch(const Bookshelf& x);
+
 #endif // BOOKSHELF_H
