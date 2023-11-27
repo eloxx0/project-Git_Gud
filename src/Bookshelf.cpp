@@ -211,7 +211,10 @@ void Bookshelf::push_back(Book a){
 //uso un resize in modo che non solo venga ridotta la dimensione ma anche venga eliminato
 //l'elemento
 void Bookshelf::pop_back(){
-    resize(length - 1);
+    
+    if(length!=0)	resize(length - 1);
+    else
+    	std::cout<<"Impossibile eseguire il pop_back, la libreria è vuota"<<std::endl;
 
 }
 
