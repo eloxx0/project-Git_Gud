@@ -132,16 +132,7 @@ int main(){
 				       //se isbn combaciano
 				       if(new_book==x[i]){
 				        
-				          if(i!=x.size()-1){
-				          //variabile temporanea per swap posizioni se il libro in prestito non si trova in coda nella libreria
-				                Book temp;
-				                temp= x[i];
-				                x[i]= x[x.size()-1];
-				                x[x.size()-1]= x[i];
-				        
-				            }
-				        
-				          x.pop_back();
+				            borrow_book(x[i]);
 				
 				        }    		    
                       }
@@ -155,29 +146,37 @@ int main(){
                  }
                    break;
             }
-          /*   
+            
           case 'r':
             case 'R': {
             
-                cout<<"Inserire informazioni sul libro da restituire:"<<endl;
-    		    
-			    Book new_book; 
-			    string isbn;
+               cout<<"Inserire isbn sul libro che intende restituire:"<<endl;
+    		   string isbn;
 
-                //crea un oggetto Isbn utilizzando il costruttore di base.
-                Isbn lib_isbn;
+               Isbn lib_isbn;
+			   cin>> isbn;
+				if(string_isbn_valid(isbn)==true){
+                    lib_isbn = isbn;
+                    Book new_book = Book("", "", "", lib_isbn);
+				    for(int i=0; i<x.size();i++){
+				       //se isbn combaciano
+				       if(new_book==x[i]){
+				        
+				            return_book(x[i]);
 				
-				cin>> isbn;
-                lib_isbn = isbn;
-                Book new_book = Book("", "", "", lib_isbn);
-				for(int i=0; i<x.size();i++){
-				    //se isbn combaciano
-				     if(new_book.getIsbn()==x[i].getIsbn()) cout<<"Il libro è gia presente in libreria"<<endl;
-				
-				}     
-			    
+				        }    		    
+                      }
+                   cout << "ok, hai restituito un libro dalla libreria! Stato attuale della libreria: " << endl;
+                   printBookshelf(x);
+                   cout << endl;
+                 } 
+                 
+                 else{
+                    cout<<"Isbn non valido"<<endl;
+                 }
+                   break;			    
             	
-            }*/
+            }
     			
             case 'q':
     		case 'Q':{ 
