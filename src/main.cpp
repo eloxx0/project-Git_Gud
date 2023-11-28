@@ -13,7 +13,7 @@ int main(){
     bool done= false;
     
     while(!done){
-    	cout<< "Inserire il comando da eseguire: premere P se si vuole inserire un libro nella libreria, E per eliminare l'ultimo libro aggiunto, Q per chiudere lo stream buffer, R per ritornare un libro, B per prendere in prestito un libro" << endl; 
+    	cout<< "Inserire il comando da eseguire: premere P se si vuole inserire un libro nella libreria, E per eliminare l'ultimo libro aggiunto, Q per chiudere l'esecuzione del programma, R per ritornare un libro, B per prendere in prestito un libro" << endl; 
         char request;
         cin>>request;
     	switch(request){
@@ -121,6 +121,8 @@ int main(){
             case 'e':
     		case 'E': {
                 x.pop_back();
+                cout << "eliminato l'ultimo libro aggiunto. Stato libreria:" << endl;
+                printBookshelf(x);
     			break;
     			
             }
@@ -185,7 +187,7 @@ int main(){
     			
             case 'q':
     		case 'Q':{ 
-
+                cout << "ok, termino l'esecuzione del programma" << endl;
                 done = true;
     			break;
             }
