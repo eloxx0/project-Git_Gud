@@ -52,7 +52,7 @@ bool string_isbn_valid(std::string s){
 
 
 bool Isbn::operator==(const Isbn& i){
-    return isbn.compare(isbn);
+    return isbn.compare(i.get_isbn());
 }
 
 bool Isbn::operator!=(const Isbn& i){

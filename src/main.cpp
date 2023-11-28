@@ -125,18 +125,17 @@ int main(){
                 Isbn lib_isbn;
 				
 				cin>> isbn;
-				if(string_isbn_valid(isbn)==true){
-                    lib_isbn = isbn;
-                    Book new_book = Book("", "", "", lib_isbn);
+				if(string_isbn_valid(isbn)){
+                    Isbn new_isbn(isbn);
 				    for(int i=0; i<x.size();i++){
 				       //se isbn combaciano
-				       if(new_book==x[i]){
+				       if(new_isbn ==x[i].getIsbn()){
 				        
 				            borrow_book(x[i]);
 				
 				        }    		    
                       }
-                   cout << "ok, hai preso in prestito un libro dalla libreria! Stato attuale della libreria: " << endl;
+                   //cout << "ok, hai preso in prestito un libro dalla libreria! Stato attuale della libreria: " << endl;
                    printBookshelf(x);
                    cout << endl;
                  } 
