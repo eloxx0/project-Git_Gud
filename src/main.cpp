@@ -115,10 +115,51 @@ int main(){
     			
             }
 
-            case 'b':
+             case 'b':
     		case 'B':{
+    		
+    		    cout<<"Inserire isbn del libro che intende prendere in prestito:"<<endl;
+    		    string isbn;
 
+                //crea un oggetto Isbn utilizzando il costruttore di base.
+                Isbn lib_isbn;
+				
+				cin>> isbn;
+                lib_isbn = isbn;
+                Book new_book = Book("", "", "", lib_isbn);
+				for(int i=0; i<x.size();i++){
+				    //se isbn combaciano
+				    if(new_book.getIsbn()==x[i].getIsbn()){
+				        
+				        if(i!=x.size()-1){
+				        //variabile temporanea per swap posizioni se il libro in prestito non si trova in coda nella libreria
+				            Book temp;
+				            temp= x[i];
+				            x[i]= x[x.size()-1];
+				            x[x.size()-1]= x[i];
+				        
+				        }
+				        
+				        x.pop_back();
+				
+				}    
+			    
             }
+                cout << "ok, hai preso in prestito un libro dalla libreria! Stato attuale della libreria: " << endl;
+                printBookshelf(x);
+                cout << endl;
+                break;
+            }
+          /*   
+          case 'r':
+            case 'R': {
+            
+                cout<<"Inserire informazioni sul libro da restituire:"<<endl;
+    		    
+			    Book new_book;  
+			    linearSearch(x,new_book);
+            	
+            }*/
     			
             case 'q':
     		case 'Q':{ 
