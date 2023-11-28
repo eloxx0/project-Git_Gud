@@ -156,8 +156,21 @@ int main(){
             
                 cout<<"Inserire informazioni sul libro da restituire:"<<endl;
     		    
-			    Book new_book;  
-			    linearSearch(x,new_book);
+			    Book new_book; 
+			    string isbn;
+
+                //crea un oggetto Isbn utilizzando il costruttore di base.
+                Isbn lib_isbn;
+				
+				cin>> isbn;
+                lib_isbn = isbn;
+                Book new_book = Book("", "", "", lib_isbn);
+				for(int i=0; i<x.size();i++){
+				    //se isbn combaciano
+				     if(new_book.getIsbn()==x[i].getIsbn()) cout<<"Il libro è gia presente in libreria"<<endl;
+				
+				}     
+			    
             	
             }*/
     			
