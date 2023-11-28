@@ -125,30 +125,35 @@ int main(){
                 Isbn lib_isbn;
 				
 				cin>> isbn;
-                lib_isbn = isbn;
-                Book new_book = Book("", "", "", lib_isbn);
-				for(int i=0; i<x.size();i++){
-				    //se isbn combaciano
-				    if(new_book.getIsbn()==x[i].getIsbn()){
+				if(string_isbn_valid(isbn)==true){
+                    lib_isbn = isbn;
+                    Book new_book = Book("", "", "", lib_isbn);
+				    for(int i=0; i<x.size();i++){
+				       //se isbn combaciano
+				       if(new_book==x[i]){
 				        
-				        if(i!=x.size()-1){
-				        //variabile temporanea per swap posizioni se il libro in prestito non si trova in coda nella libreria
-				            Book temp;
-				            temp= x[i];
-				            x[i]= x[x.size()-1];
-				            x[x.size()-1]= x[i];
+				          if(i!=x.size()-1){
+				          //variabile temporanea per swap posizioni se il libro in prestito non si trova in coda nella libreria
+				                Book temp;
+				                temp= x[i];
+				                x[i]= x[x.size()-1];
+				                x[x.size()-1]= x[i];
 				        
-				        }
+				            }
 				        
-				        x.pop_back();
+				          x.pop_back();
 				
-				}    
-			    
-            }
-                cout << "ok, hai preso in prestito un libro dalla libreria! Stato attuale della libreria: " << endl;
-                printBookshelf(x);
-                cout << endl;
-                break;
+				        }    		    
+                      }
+                   cout << "ok, hai preso in prestito un libro dalla libreria! Stato attuale della libreria: " << endl;
+                   printBookshelf(x);
+                   cout << endl;
+                 } 
+                 
+                 else{
+                    cout<<"Isbn non valido"<<endl;
+                 }
+                   break;
             }
           /*   
           case 'r':
