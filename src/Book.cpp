@@ -17,21 +17,21 @@ void Book::set_availability(bool b){
 
 void borrow_book(Book& book){
     if(book.getAvailability()){
-        std::cout << "il libro è stato preso in prestito";
+        std::cout << "il libro è stato preso in prestito" << std::endl;
         book.set_availability(false);
         return;
     }
-    std::cout << "il libro non è disponibile per essere preso in prestito";
+    std::cout << "il libro non è disponibile per essere preso in prestito" << std::endl;
 
 }
 
 void return_book(Book& book){
     if(!book.getAvailability()){
-        std::cout << "il libro è stato restituito";
+        std::cout << "il libro è stato restituito" << std::endl;
         book.set_availability(true);
         return;
     }
-    std::cout << "il libro è già disponibile";
+    std::cout << "il libro è già disponibile" << std::endl;
 
 }
 

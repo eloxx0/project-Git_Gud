@@ -15,6 +15,11 @@ Isbn::Isbn(){
     this ->isbn = generate_isbn();
 }
 
+//metodo che dato un char ritorna l'int corrispondente
+int parse_int(char a){
+    return (a - '0');
+}
+
 
 bool string_isbn_valid(std::string s){
 
@@ -33,7 +38,7 @@ bool string_isbn_valid(std::string s){
     std::vector<int> s_vec_int;
     for(int i = 0; i < s_vec.size(); i++){
         //converto da char a int
-        s_vec_int.push_back(s_vec[i] - '0');
+        s_vec_int.push_back(parse_int(s_vec[i]));
     }
 
     int control = isbn_control_value(s_vec_int);
@@ -51,8 +56,12 @@ bool string_isbn_valid(std::string s){
 }
 
 
+//il metodo compare tra due stringhe ritorna 0 se sono uguali, un numero < 0 o > di 0 in base alla
+//relazione di diseguaglianza tra le due stringhe
 bool Isbn::operator==(const Isbn& i){
-    return isbn.compare(i.get_isbn());
+    bool a;
+    (isbn.compare(i.get_isbn()) == 0)? a = true : a = false;
+    return a;
 }
 
 bool Isbn::operator!=(const Isbn& i){
@@ -67,7 +76,7 @@ std::string generate_isbn(){
     std::vector<int> s_vec_int;
     for(int i = 0; i < s_vec.size(); i++){
         //converto da char a int
-        s_vec_int.push_back(s_vec[i] - '0');
+        s_vec_int.push_back(parse_int(s_vec[i]));
     }
 
     int control = isbn_control_value(s_vec_int);

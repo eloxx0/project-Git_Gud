@@ -1,6 +1,11 @@
 #include "../include/Bookshelf.h"
+#include <limits>
 
 using namespace std;
+
+int int_from_char(char a){
+    return (a - '0');
+}
 
 int main(){
 
@@ -58,9 +63,9 @@ int main(){
 
 					char k;
 					cin >> k;
-                    cout << k;
 
                     if(k != 'Y' && k != 'y'){
+                        cout << "senza un isbn corretto non posso inserire il libro, ritorno al menu iniziale" << endl;
                         break;
                     }
 
@@ -74,6 +79,7 @@ int main(){
                 cout << "se vuoi inserire anche la data, premi Y" << endl;
                 
                 char a;
+                //inizializzata dal costruttore di base al valore di default
                 Date date;
                 int day;
                 int month;
@@ -82,28 +88,32 @@ int main(){
 
                 if(a == 'y' || a == 'Y'){
                     cout << "ok, inserire il giorno, il mese e l'anno separati da uno spazio" << endl;
-                    cin >> day >> month >> year;
+                    cin >> day;
+                    cin >> month;
+                    cin >> year;
+                    //gestisce il caso in cui l'input non riceve interi corretti
+                    if (cin.fail()) {
+                    cin.clear();
+                    cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                    }
                     try{
                         date = Date(day, Month(month), year);
                     }
                     catch(Date::Invalid_argument e){
                         cout << "inserita data non valida, inizializzata alla data di default" << endl;
+
                     }
                     catch(Year::Invalid_year e){
                         cout << " inserito anno non valido, inizializzato alla data di default" << endl;
                     }
-
-                    //uso il costruttore che richiede anche la data
-                    new_book = Book(nome, cognome, titolo, lib_isbn, date);
                 }
-                else{
-                    new_book = Book(nome, cognome, titolo, lib_isbn);
-                }
+                new_book = Book(nome, cognome, titolo, lib_isbn, date);
                 x.push_back(new_book);
 
                 cout << "ok, ho aggiunto il libro alla tua libreria! Stato attuale della libreria: " << endl;
                 printBookshelf(x);
                 cout << endl;
+
 				
     			break;
             }
@@ -115,65 +125,61 @@ int main(){
     			
             }
 
-             case 'b':
+            case 'b':
     		case 'B':{
-    		
-    		    cout<<"Inserire isbn del libro che intende prendere in prestito:"<<endl;
-    		    string isbn;
-
-                //crea un oggetto Isbn utilizzando il costruttore di base.
-                Isbn lib_isbn;
-				
-				cin>> isbn;
-				if(string_isbn_valid(isbn)){
+                cout<<"Inserire isbn del libro che intende prendere in prestito:"<<endl;
+                string isbn;
+                
+                cin>> isbn;
+                if(string_isbn_valid(isbn)){
                     Isbn new_isbn(isbn);
-				    for(int i=0; i<x.size();i++){
-				       //se isbn combaciano
-				       if(new_isbn ==x[i].getIsbn()){
-				        
-				            borrow_book(x[i]);
-				
-				        }    		    
+                    std::cout << "isbn " << new_isbn.get_isbn();
+                    for(int i=0; i<x.size();i++){
+                       //se isbn combaciano
+                        if(new_isbn == x[i].getIsbn()){
+                           //cambio lo stato del libro all'interno della libreria da disponibile a 
+                           //non disponibile
+                            borrow_book(x[i]);
+                        }
                       }
-                   //cout << "ok, hai preso in prestito un libro dalla libreria! Stato attuale della libreria: " << endl;
+                   cout << "Stato attuale della libreria: " << endl;
                    printBookshelf(x);
                    cout << endl;
-                 } 
-                 
-                 else{
+                } 
+                else{
                     cout<<"Isbn non valido"<<endl;
-                 }
-                   break;
+                }
+                break;
             }
             
-          case 'r':
+            case 'r':
             case 'R': {
-            
-               cout<<"Inserire isbn sul libro che intende restituire:"<<endl;
-    		   string isbn;
 
-               Isbn lib_isbn;
-			   cin>> isbn;
-				if(string_isbn_valid(isbn)==true){
+                cout<<"Inserire isbn sul libro che intende restituire:"<<endl;
+                   string isbn;
+
+                Isbn lib_isbn;
+                cin>> isbn;
+                if(string_isbn_valid(isbn)==true){
                     lib_isbn = isbn;
                     Book new_book = Book("", "", "", lib_isbn);
-				    for(int i=0; i<x.size();i++){
-				       //se isbn combaciano
-				       if(new_book==x[i]){
-				        
-				            return_book(x[i]);
-				
-				        }    		    
-                      }
-                   cout << "ok, hai restituito un libro dalla libreria! Stato attuale della libreria: " << endl;
-                   printBookshelf(x);
-                   cout << endl;
-                 } 
-                 
-                 else{
+                    for(int i=0; i<x.size();i++){
+                        //se isbn combaciano
+                        if(new_book==x[i]){
+                            //è possibile ritornare un libro solo se è già stato inserito
+                            //all'interno della libreria, ma risulta non
+                            //disponibile
+                            return_book(x[i]);
+                        } 
+                    }
+                    cout << "Stato attuale della libreria: " << endl;
+                    printBookshelf(x);
+                    cout << endl;
+                } 
+                else{
                     cout<<"Isbn non valido"<<endl;
-                 }
-                   break;			    
+                }
+            break;
             	
             }
     			
