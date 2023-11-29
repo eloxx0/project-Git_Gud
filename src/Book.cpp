@@ -2,6 +2,9 @@
 
 Book::Book():name{""}, surname{""}, title{""},available{true}, isbn{}, date{} {}
 //gli ultimi due dati membro essendo udt richiamo il costruttore vuoto definito nella loro classe, i primi 3 dati membro sono stringhe vuote
+//poichè costruito dal costruttore di base settiamo la variabile available a true in modo che se andiamo 
+//a utilizzare Bookshelf(10) quando vado a printare la libreria risulta composta da libri senza titolo nome e cognome
+//ma con un codice isbn valido
 
 Book::Book(std::string nome, std::string cognome, std::string titolo, Isbn isbn): name{nome}, surname{cognome}, title{titolo}, isbn{isbn}{
 	available=true;

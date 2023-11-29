@@ -25,9 +25,6 @@ Bookshelf::Bookshelf(const Bookshelf& v) : capacity{v.capacity}, elem{new Book[v
 }
 
 //creo un costruttore di move che permette di spostare un vettore
-//uso una rvalue reference (&&) che è la sintassi che indica il riferimento
-//ad un rvalue in modo da permettere di spostare le risorse senza usare la copia
-//e utilizzare un rvalue come un lvalue
 Bookshelf::Bookshelf(Bookshelf&& v) : capacity{v.capacity}, elem{v.elem}, length{v.length}{
     //elimina v
     //questo impedisce al distruttore di liberare più volte le risorse
@@ -56,10 +53,7 @@ Bookshelf& Bookshelf::operator=(Bookshelf&& v){
     return *this;
 }
 
-//assegnamento di copia, fa una deep copy(stessi elementi in diverse posizioni in memoria) e 
-//la assegna all'oggetto chiamante
-//se non faccio la deep copy viene generato un errore in compilazione poichè il distruttore
-//viene chiamato due volte sullo stesso spazio di memoria
+//assegnamento di copia
 Bookshelf& Bookshelf::operator=(const Bookshelf& v){
     //uso il costruttore di copia, poi alla fine dello scope v2 viene 
     //deallocato dal distruttore
@@ -232,6 +226,7 @@ void printBookshelf(const Bookshelf& x){
 	
 	for(int i=0;i<x.size(); i++){
 
+        //stampa i libri all'interno della libreria soltanto se risultano disponibili
 		if(x[i].getAvailability()==true){ 
             std::cout << "libro " << (i + 1) << ":" << std::endl;
             std::cout<<x[i] << "\n";

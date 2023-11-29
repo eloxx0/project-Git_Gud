@@ -29,16 +29,16 @@ class Book{
 	//getter
 	std::string getTitle(void) const{
         return title;
-    };
+    }
 	std::string getName(void) const{
         return name;
-    };
+    }
 	std::string getSurname(void) const{
         return surname;
-    };
+    }
 	Date getDate(void) const{
         return date;
-    };
+    }
     bool getAvailability() const{
         return available;
     }
