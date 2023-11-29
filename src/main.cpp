@@ -13,7 +13,7 @@ int main(){
     Bookshelf x;
     bool done= false;
     
-    while(done){
+    while(!done){
     	cout<< "Inserire il comando da eseguire:\n -Premere P se si vuole inserire un libro nella libreria\n -E per eliminare l'ultimo libro aggiunto\n -R per ritornare un libro\n -B per prendere in prestito un libro \n -Q per chiudere l'esecuzione del programma" << endl; 
         char request;
         cin>>request;
