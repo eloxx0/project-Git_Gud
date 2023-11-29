@@ -59,10 +59,15 @@ int main(){
 
                     string url = "https://it.wikipedia.org/wiki/ISBN";
 					cout<<"L'Isbn non rispetta lo standard (visualizzare questo link: " << url
-                        << " per istruzioni sullo standard). Vuoi generare un isbn valido? Inserire Y per generarlo"<<endl;
+                        << " per istruzioni sullo standard, oppure visualizzare la libreria del progetto)."
+                        << "Vuoi generare un isbn valido? Inserire Y per generarlo"<<endl;
 
+
+                    cin.ignore(numeric_limits<streamsize>::max(), '\n');
 					char k;
 					cin >> k;
+
+                    cin.ignore(numeric_limits<streamsize>::max(), '\n');
 
                     if(k != 'Y' && k != 'y'){
                         cout << "senza un isbn corretto non posso inserire il libro, ritorno al menu iniziale" << endl;
@@ -79,15 +84,17 @@ int main(){
                 cout << "se vuoi inserire anche la data, premi Y" << endl;
                 
                 char a;
+                cin >> a;
                 //inizializzata dal costruttore di base al valore di default
                 Date date;
-                int day;
-                int month;
-                int year;
-                cin >> a;
 
                 if(a == 'y' || a == 'Y'){
                     cout << "ok, inserire il giorno, il mese e l'anno separati da uno spazio" << endl;
+                    int day;
+                    int month;
+                    int year;
+
+                    //****necessario inserire tre input separati per procedere nell'esecuzione****
                     cin >> day;
                     cin >> month;
                     cin >> year;
@@ -108,12 +115,19 @@ int main(){
                         cout << " inserito anno non valido, inizializzato alla data di default" << endl;
                     }
                 }
+                else{
+                    cout << "ok, utilizzo la data di default";
+                }
                 new_book = Book(nome, cognome, titolo, lib_isbn, date);
                 x.push_back(new_book);
 
                 cout << "ok, ho aggiunto il libro alla tua libreria! Stato attuale della libreria: " << endl;
                 printBookshelf(x);
                 cout << endl;
+                
+                //svuoto il buffer in modo da gestire il caso in cui in input ad a vengano passate
+                //più stringhe
+                cin.ignore(numeric_limits<streamsize>::max(), '\n');
 
 				
     			break;
@@ -140,7 +154,7 @@ int main(){
                 cin>> isbn;
                 if(string_isbn_valid(isbn)){
                     Isbn new_isbn(isbn);
-                    std::cout << "isbn " << new_isbn.get_isbn();
+                    //linear search
                     for(int i=0; i<x.size();i++){
                        //se isbn combaciano
                         if(new_isbn == x[i].getIsbn()){
@@ -154,15 +168,12 @@ int main(){
                 else{
                     cout<<"Isbn non valido"<<endl;
                 }
+                cin.ignore(numeric_limits<streamsize>::max(), '\n');
                 break;
             }
             
             case 'r':
             case 'R': {
-
-                cout << "Stato attuale della libreria: " << endl;
-                    printBookshelf(x);
-                    cout << endl;
 
                 cout<<"Inserire isbn sul libro che intende restituire:"<<endl;
                    string isbn;
@@ -171,21 +182,39 @@ int main(){
                 cin>> isbn;
                 if(string_isbn_valid(isbn)==true){
                     lib_isbn = isbn;
+                    //poichè il confronto viene fatto tra gli isbn di un libro,
+                    //che lo identificano univocamente, inizializzo il libro con il solo isbn in 
+                    //modo da poter utilizzare il linearSearch e l'operatore == tra Book
                     Book new_book = Book("", "", "", lib_isbn);
-                    for(int i=0; i<x.size();i++){
-                        //se isbn combaciano
-                        if(new_book==x[i]){
-                            //è possibile ritornare un libro solo se è già stato inserito
-                            //all'interno della libreria, ma risulta non
-                            //disponibile
-                            return_book(x[i]);
-                        } 
+                    /* for(int i=0; i<x.size();i++){ */
+                    /*     //se isbn combaciano */
+                    /*     if(new_book==x[i]){ */
+                    /*         //è possibile ritornare un libro solo se è già stato inserito */
+                    /*         //all'interno della libreria, ma risulta non */
+                    /*         //disponibile */
+                    /*         return_book(x[i]); */
+                    /*     }  */
+                    /* } */
+
+                    //uso il linear search, torna l'indice della bookshelf in cui 
+                    //si trova il libro cercato, -1 se non è presente
+                    int a = linearSearch(x, new_book);
+                    if(a != -1){
+                        return_book(x[a]);
                     }
+                    else{
+                        cout << "Ricordo che un libro può essere restituito solamente"
+                            << "se era già in libreria e poi è stato preso in prestito."
+                            << "impossibile restituire il libro richiesto";
+                    }
+                    cout << "Stato attuale della libreria: " << endl;
+                    printBookshelf(x);
                     
                 } 
                 else{
                     cout<<"Isbn non valido"<<endl;
                 }
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
             break;
             	
             }

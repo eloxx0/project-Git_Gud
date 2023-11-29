@@ -240,7 +240,7 @@ void printBookshelf(const Bookshelf& x){
 
 }
 
-int linearSearch(Bookshelf& x, Book& y){
+int linearSearch(const Bookshelf& x, const Book& y){
 
 	for(int i=0; i<x.size(); i++){
 
