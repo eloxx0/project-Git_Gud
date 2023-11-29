@@ -61,7 +61,7 @@ int main(){
                     string url = "https://it.wikipedia.org/wiki/ISBN";
 					cout<<"L'Isbn non rispetta lo standard (visualizzare questo link: " << url
                         << " per istruzioni sullo standard, oppure visualizzare la libreria del progetto)."
-                        << "Vuoi generare un isbn valido? Inserire Y per generarlo"<<endl;
+                        << "Vuoi generare un isbn valido? y/n"<<endl;
 
 
                     cin.ignore(numeric_limits<streamsize>::max(), '\n');
@@ -117,7 +117,7 @@ int main(){
                     }
                 }
                 else{
-                    cout << "ok, utilizzo la data di default";
+                    cout << "ok, utilizzo la data di default\n";
                 }
              Book new_book = Book(nome, cognome, titolo, lib_isbn, date);
                 x.push_back (new_book);
