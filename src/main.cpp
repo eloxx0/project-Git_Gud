@@ -13,7 +13,7 @@ int main(){
     bool done= false;
     
     while(!done){
-    	cout<< "Inserire il comando da eseguire: premere P se si vuole inserire un libro nella libreria, E per eliminare l'ultimo libro aggiunto, Q per chiudere l'esecuzione del programma, R per ritornare un libro, B per prendere in prestito un libro" << endl; 
+    	cout<< "Inserire il comando da eseguire:\n -Premere P se si vuole inserire un libro nella libreria\n -E per eliminare l'ultimo libro aggiunto\n -R per ritornare un libro\n -B per prendere in prestito un libro \n -Q per chiudere l'esecuzione del programma" << endl; 
         char request;
         cin>>request;
     	switch(request){
@@ -58,8 +58,8 @@ int main(){
 				catch(Isbn::Invalid_Isbn_Argument e){
 
                     string url = "https://it.wikipedia.org/wiki/ISBN";
-					cout<<"L'Isbn non rispetta lo standard (visualizzare questo link: " << url;
-                    cout << " per istruzioni sullo standard). Vuoi generare un isbn valido? Inserire Y per generarlo"<<endl;
+					cout<<"L'Isbn non rispetta lo standard (visualizzare questo link: " << url
+                        << " per istruzioni sullo standard). Vuoi generare un isbn valido? Inserire Y per generarlo"<<endl;
 
 					char k;
 					cin >> k;
@@ -91,9 +91,10 @@ int main(){
                     cin >> day;
                     cin >> month;
                     cin >> year;
-                    //gestisce il caso in cui l'input non riceve interi corretti
+                    //gestisce il caso in cui l'input non riceve interi corretti, pulendo il buffer di input
                     if (cin.fail()) {
                     cin.clear();
+                    
                     cin.ignore(numeric_limits<streamsize>::max(), '\n');
                     }
                     try{
@@ -129,6 +130,10 @@ int main(){
 
             case 'b':
     		case 'B':{
+
+                cout << "Stato attuale della libreria: " << endl;
+                   printBookshelf(x);
+                   cout << endl;
                 cout<<"Inserire isbn del libro che intende prendere in prestito:"<<endl;
                 string isbn;
                 
@@ -144,9 +149,7 @@ int main(){
                             borrow_book(x[i]);
                         }
                       }
-                   cout << "Stato attuale della libreria: " << endl;
-                   printBookshelf(x);
-                   cout << endl;
+                   
                 } 
                 else{
                     cout<<"Isbn non valido"<<endl;
@@ -156,6 +159,10 @@ int main(){
             
             case 'r':
             case 'R': {
+
+                cout << "Stato attuale della libreria: " << endl;
+                    printBookshelf(x);
+                    cout << endl;
 
                 cout<<"Inserire isbn sul libro che intende restituire:"<<endl;
                    string isbn;
@@ -174,9 +181,7 @@ int main(){
                             return_book(x[i]);
                         } 
                     }
-                    cout << "Stato attuale della libreria: " << endl;
-                    printBookshelf(x);
-                    cout << endl;
+                    
                 } 
                 else{
                     cout<<"Isbn non valido"<<endl;
