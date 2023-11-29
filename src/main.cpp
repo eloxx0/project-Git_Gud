@@ -82,7 +82,7 @@ int main(){
 				
 				}
 
-                cout << "se vuoi inserire anche la data, premi Y" << endl;
+                cout << "Vuoi inserire anche la data? y/n" << endl;
                 
                 char a;
                 cin >> a;
