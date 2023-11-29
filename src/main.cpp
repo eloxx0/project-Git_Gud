@@ -7,12 +7,13 @@ int int_from_char(char a){
     return (a - '0');
 }
 
+
 int main(){
 
     Bookshelf x;
     bool done= false;
     
-    while(!done){
+    while(done){
     	cout<< "Inserire il comando da eseguire:\n -Premere P se si vuole inserire un libro nella libreria\n -E per eliminare l'ultimo libro aggiunto\n -R per ritornare un libro\n -B per prendere in prestito un libro \n -Q per chiudere l'esecuzione del programma" << endl; 
         char request;
         cin>>request;
@@ -22,7 +23,7 @@ int main(){
             case 'p':
     		case 'P':{
 
-                Book new_book;
+                Book dummy_book;
 
     			cout<<"Inserire dati libro:"<<endl;
 				cout<<"Inserire titolo"<<endl;
@@ -118,8 +119,8 @@ int main(){
                 else{
                     cout << "ok, utilizzo la data di default";
                 }
-                new_book = Book(nome, cognome, titolo, lib_isbn, date);
-                x.push_back(new_book);
+             Book new_book = Book(nome, cognome, titolo, lib_isbn, date);
+                x.push_back (new_book);
 
                 cout << "ok, ho aggiunto il libro alla tua libreria! Stato attuale della libreria: " << endl;
                 printBookshelf(x);
@@ -185,10 +186,10 @@ int main(){
                     //poichè il confronto viene fatto tra gli isbn di un libro,
                     //che lo identificano univocamente, inizializzo il libro con il solo isbn in 
                     //modo da poter utilizzare il linearSearch e l'operatore == tra Book
-                    Book new_book = Book("", "", "", lib_isbn);
+                    Book dummy_book = Book("", "", "", lib_isbn);
                     /* for(int i=0; i<x.size();i++){ */
                     /*     //se isbn combaciano */
-                    /*     if(new_book==x[i]){ */
+                    /*     if dummy_book==x[i]){ */
                     /*         //è possibile ritornare un libro solo se è già stato inserito */
                     /*         //all'interno della libreria, ma risulta non */
                     /*         //disponibile */
@@ -198,7 +199,7 @@ int main(){
 
                     //uso il linear search, torna l'indice della bookshelf in cui 
                     //si trova il libro cercato, -1 se non è presente
-                    int a = linearSearch(x, new_book);
+                    int a = linearSearch(x, dummy_book);
                     if(a != -1){
                         return_book(x[a]);
                     }

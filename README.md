@@ -6,3 +6,9 @@ cmake .
 make
 ```
 It will create a bin directory where you will find the executable file
+## Usage
+In your terminal go to che /bin directory with, and execute the main file:
+'''
+cd /bin
+./main
+'''
