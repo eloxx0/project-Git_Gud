@@ -1,5 +1,9 @@
 # Git_Gud
-Repo link:https://github.com/eloxx0/project-Git_Gud
+## Installation
+Repo link:https://github.com/eloxx0/project-Git_Gud if you want to clone it, you will need to install git, then execute:
+```
+git clone https://github.com/eloxx0/project-Git_Gud 
+```
 ## Compiling
 To compile the project we provide a cmake file. In the cloned directory, open a terminal and execute:
 ```
